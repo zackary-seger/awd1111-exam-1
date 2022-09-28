@@ -7,10 +7,12 @@ const router = express.Router();
 // Register Routes
 router.post('/', (req, res, next) => {
   const maritalStatus = req.body.mode;
-  const taxableIncome = req.body.income;
+  const taxableIncome = parseFloat(req.body.income);
+
   let calculatedIncomeTax;
   let income = parseFloat(taxableIncome);
   console.log(`${income}`);
+
   if (maritalStatus == "Single") {
     if (!income) {
       console.log(`We're sorry, your input was invalid. Please enter a number greater than 0.`);
@@ -62,6 +64,7 @@ router.post('/', (req, res, next) => {
   } else if (maritalStatus == "Married") {
     if (!income) {
         console.log(`We're sorry, your input was invalid. Please enter a number greater than 0.`);
+        res.status(400).json({ error: `We're sorry, your input was invalid. Please enter a number greater than 0.`});
     } else if (income >= 0 && income <= 19900) {
         console.log(`Calculating..`);
         calculatedIncomeTax = Math.ceil(income * .1);
@@ -108,7 +111,8 @@ router.post('/', (req, res, next) => {
         console.log(`We're sorry, your input was invalid. Please try again`);
     }
     } else {
-      console.log(`We're sorry, your input was invalid. Please enter a 0 or 1`);
+      console.log(`We're sorry, your input was invalid. Please enter Single or Married`);
+      res.status(400).json({ error: 'Marital status must be Single or Married.'});
     }
     
   });
