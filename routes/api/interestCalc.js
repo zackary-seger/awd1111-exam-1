@@ -10,6 +10,7 @@ router.post('/', (req, res, next) => {
   const interestRate = parseFloat(req.body.interestRate);
   const principal = parseFloat(req.body.principal);
   const totalYears = parseFloat(req.body.totalYears);
+  
   if (!principal || principal <= 0) {
     res.status(400).json({ error: 'Principal must be a number greater than zero.'});
   }
