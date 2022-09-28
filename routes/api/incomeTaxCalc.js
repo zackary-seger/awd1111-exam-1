@@ -73,7 +73,7 @@ router.post('/', (req, res, next) => {
   } else if (maritalStatus == "Married") {
     if (!income) {
         console.log(`We're sorry, your input was invalid. Please enter a marital status.`);
-        res.status(400).json({ error: `We're sorry, your input was invalid. Please enter a marital status.`});
+        res.status(400).json({ error: `We're sorry, your input was invalid. Please enter an income greater than 0.`});
     } else if (income >= 0 && income <= 19900) {
         console.log(`Calculating..`);
         calculatedIncomeTax = Math.ceil(income * .1);
