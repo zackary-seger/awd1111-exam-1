@@ -42,22 +42,95 @@
 
     <main>
       <div class="container mt-2 pt-1 bg-warning">
+
         <div class="row ms-3">
           
           <h2 class="row mt-3">MPG Calculator</h2>
           <div class="container">
-            <form action="/action_page.php">
-              <label class="row mb-1" for="status">Miles Driven:</label>
-              <input class="row mb-1" type="text" id="status" name="status">
-              <label class="row mb-1" for="income">Gallons Used:</label>
-              <input class="row mb-3" type="text" id="income" name="income">
-              <input class="row mb-3" type="submit" value="Calculate">
+            <form id="calcForm" method="POST" action="/api/mpgCalc">
+              <label class="row mb-1" for="miles">Miles Driven:</label>
+              <input class="row mb-1" type="number" id="miles" name="miles">
+              <label class="row mb-1" for="gallons">Gallons Used:</label>
+              <input class="row mb-3" type="number" id="gallons" name="gallons">
+              <input class="row mb-3" type="submit" id="calculateBtn" value="Calculate">              
             </form>
           </div>
           
-          <p class="row">Click the Calculate button to calculate your total MPG.</p>
+          <p class="row">Click the Calculate button to calculate your 
+            total MPG. You must enter numbers.</p>
+
+          <p hidden id="error-message" class="row"></p>
+
+        </div>
+      </div>
+
+      <div class="container mt-2 pt-1 bg-warning">
+        <div class="row ms-3">
+            
+          <h2 class="row mt-3">Temperature Converter</h2>
+          <div class="container">
+            <form id="tempForm" method="POST" action="/api/tempConverter">
+              <label class="row mb-1" for="mode">FtoC or CtoF:</label>
+              <input class="row mb-1" type="text" id="mode" name="mode">
+              <label class="row mb-1" for="temp">Recorded Temperature:</label>
+              <input class="row mb-3" type="number" id="temp" name="temp">
+              <input class="row mb-3" type="submit" id="convertBtn" value="Convert">              
+            </form>
+          </div>
+          
+          <p class="row">Click the Convert button to covert your recorded temperatures!</p>
+
+          <p hidden id="error-message" class="row"></p>
+
+        </div>
+      </div>
+
+    <div class="container mt-2 pt-1 bg-warning">
+      <div class="row ms-3">
+            
+        <h2 class="row mt-3">Income Tax Calculator</h2>
+        <div class="container">
+          <form id="incomeTaxCalcForm" method="POST" action="/api/incomeTaxCalc">
+            <label class="row mb-1" for="mode">Single or Married:</label>
+            <input class="row mb-1" type="text" id="mode" name="mode">
+            <label class="row mb-1" for="income">Taxable Income:</label>
+            <input class="row mb-3" type="number" id="income" name="income">
+            <input class="row mb-3" type="submit" id="calculateIncomeTaxBtn" value="Calculate">              
+          </form>
+        </div>
+        
+        <p class="row">Click the Calculate button to calculate your 
+          total calculated income tax.</p>
+
+        <p hidden id="error-message" class="row"></p>
 
       </div>
+    </div>
+
+    <div class="container mt-2 mb-2 pt-1 bg-warning">
+      <div class="row ms-3">
+              
+        <h2 class="row mt-3">Interest Calculator</h2>
+        <div class="container">
+          <form id="interestCalcForm" method="POST" action="/api/interestCalc">
+            <label class="row mb-1" for="principal">Principal:</label>
+            <input class="row mb-1" type="text" id="principal" name="principal">
+            <label class="row mb-1" for="interestRate">Interest Rate (0-100):</label>
+            <input class="row mb-1" type="text" id="interestRate" name="interestRate">
+            <label class="row mb-1" for="totalYears">Total Years:</label>
+            <input class="row mb-3" type="text" id="totalYears" name="totalYears">
+            <input class="row mb-3" type="submit" id="calculateInterestBtn" value="Calculate">              
+          </form>
+        </div>
+        
+        <p class="row">Click the Calculate button to calculate your 
+          final total after interest.</p>
+
+        <p hidden id="error-message" class="row"></p>
+
+        </div>
+      </div>
+
     </main>
 
     <footer>
@@ -66,7 +139,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous">
     </script>
+
   </div>
 </body>
-
 </html>

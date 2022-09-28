@@ -5,11 +5,16 @@ import Debug from 'debug';
 const debugMain = Debug("app:server");
 const debugError = Debug("app:error");
 import express from 'express';
+import path from 'path';
+import url from 'url';
 
-// import { mpgRouter } from './routes/api/mpgCalc.js';
-// import { tempRouter } from './routes/api/tempConverter.js';
-// import { incomeRouter } from './routes/api/incomeTaxConverter.js';
-// import { interestRouter } from './routes/api/interestCalc.js';
+const __filename = url.fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+import { mpgRouter } from './routes/api/mpgCalc.js';
+import { tempRouter } from './routes/api/tempConverter.js';
+import { incomeRouter } from './routes/api/incomeTaxCalc.js';
+import { interestRouter } from './routes/api/interestCalc.js';
 
 // Create Application
 const app = express();
@@ -17,16 +22,16 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // Register Routes
-// app.use('/api/user', mpgRouter);
-// app.use('/api/bug', tempRouter);
-// app.use('/api/user', incomeRouter);
-// app.use('/api/bug', interestRouter);
-app.use('/', express.static('public', { index: 'index.html'}));
+app.use('/api/mpgCalc', mpgRouter);
+app.use('/api/tempConverter', tempRouter);
+app.use('/api/incomeTaxCalc', incomeRouter);
+app.use('/api/interestCalc', interestRouter);
+// app.use('/', express.static('public', { index: 'index.html'}));
 
-app.get('/', (req, res, next) => {
-  debugMain('Home Page');
-  res.type("text/plain").send('Home Page');
-})
+// sendFile will go here
+app.get('/', function(req, res) {
+  res.sendFile(path.join(__dirname, '/public/index.html'));
+});
 
 // register error handlers
 app.use((req, res, next) => {
